@@ -57,9 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u:\W\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -116,9 +116,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# added by Anaconda3 4.4.0 installer
-export PATH="/home/michael/anaconda3/bin:$PATH"
 
+export SPARK_HOME=/usr/local/spark
+export PYTHONPATH=$SPARK_HOME/python:$PYTHONPATH
+
+export HADOOP_HOME=/usr/local/hadoop
+export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native/:$LD_LIBRARY_PATH
+
+# added by Anaconda3 installer
+export PATH="/home/michael/anaconda3/bin:$PATH"
+export PATH="/home/michael/scripts:$PATH"
+alias mongo="mongo --authenticationDatabase admin"
+
+# only show current directory
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
 # I DONT WANT A NANOTER, I WANT AN EDITOR, ED IS
 # THE STANDARD EDITOR
@@ -128,15 +139,18 @@ notepad() {
 	echo "no"
 	read -t 1
 	echo would you like to start ed
-	read -t 1
+	read -t 2
 	echo 
 	echo great, starting ed
 	ed $1
 }
+
 up() {
-  case $1 in
+    case $1 in
     *[!0-9]*)
-      cd $( pwd | sed -r "s|(.*/$1[^/]*/).*|\1|" )
+	part_one=$(echo $1/ | sed 's/\([^/]\+\).*/\1/')
+	part_two=$(echo $1/ | sed 's/[^/]\+\/\(.*\)/\1/')
+	cd $( pwd | sed -r "s|(.*/$part_one[^/]*/).*|\1|" )/$part_two
       ;;
     *)
       cd $(printf "%0.0s../" $(seq 1 $1));
