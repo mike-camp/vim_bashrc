@@ -25,6 +25,10 @@ au BufNewFile,BufRead *.py
     \ set autoindent|
     \ set fileformat=unix
 
+augroup filetypedetect
+	au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
+augroup END
+
 " Set indentation for js, html, and css
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2|
@@ -76,7 +80,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 
 
-
+Bundle "motus/pig.vim"
 
 
 "All plugins must be added before next line
