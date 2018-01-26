@@ -27,6 +27,7 @@ au BufNewFile,BufRead *.py
 
 augroup filetypedetect
 	au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
+	au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
 augroup END
 
 " Set indentation for js, html, and css
@@ -79,6 +80,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 
+Plugin 'derekwyatt/vim-scala'
 
 Bundle "motus/pig.vim"
 
