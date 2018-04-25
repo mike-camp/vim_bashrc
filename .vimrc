@@ -12,6 +12,10 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
+" Enable qouting words
+nnoremap <space>" ciw""<Esc>P
+nnoremap <space>' ciw''<Esc>P
+
 " Show documentation for folds
 let g:SimpylFold_docstring_preview=1
 
