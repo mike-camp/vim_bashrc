@@ -6,6 +6,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
+nnoremap <C-N> <C-W><C-W>
 
 " Enable folding
 set foldmethod=indent
@@ -15,6 +16,14 @@ nnoremap <space> za
 " Enable qouting words
 nnoremap <space>" ciw""<Esc>P
 nnoremap <space>' ciw''<Esc>P
+
+" Enable visual qouting and addition of parenthesis
+vnoremap <space>" <Esc>`>a"<Esc>`<i"<Esc>
+vnoremap <space>() <Esc>`>a)<Esc>`<i(<Esc>
+vnoremap <space>[] <Esc>`>a]<Esc>`<i[<Esc>
+vnoremap <space>' <Esc>`<i'<Esc>`>a'<Esc>
+vnoremap <space>{} <Esc>`<i{<Esc>`>a}<Esc>
+
 
 " Show documentation for folds
 let g:SimpylFold_docstring_preview=1
