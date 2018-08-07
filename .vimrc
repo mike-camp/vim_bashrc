@@ -38,6 +38,12 @@ au BufNewFile,BufRead *.py
     \ set autoindent|
     \ set fileformat=unix
 
+" Set indentation for js, html, and css
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2|
+    \ set softtabstop=2|
+    \ set shiftwidth=2
+
 augroup filetypedetect
 	au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
 	au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
@@ -81,6 +87,13 @@ set nu
 " Let vim access system clipboard
 set clipboard=unnamed
 
+" Persist undo across sessions
+set undofile
+
+" set undo directory to ~/.vim/undodir
+set undodir=~/.vim/undodir
+
+
 " set the runtime path to include vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -93,6 +106,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'derekwyatt/vim-scala'
 
 Bundle "motus/pig.vim"
