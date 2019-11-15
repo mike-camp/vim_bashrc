@@ -1,50 +1,41 @@
-# Vim and bashrc profile settings
+# Useful Bash functions
+A library of useful bash functions.  These functions can be installed by running 
 
-This repository contains the vim and bashrc files which can be used to set up vim and bashrc.   The plugins for vim are managed by Vundle, and include:
-  - indentpython
-  - SimpylFold
-  - Nerdtree
-  - syntastic
-  - YouCompleteMe
-
-To run the .vimrc file you will need a version of vim which support python2.  The script install\_vim.sh will install the correct version of vim, and will then install the plugins.   If you do not want to write the script, then to see if your version of vim includes python 2, enter vim --version.  You should see a +python if the version of vim includes python2.  Note, if the version says -python +python3, it will not work.  Choose another distribution of vim, or build it yourself from source.    
-
-To complete installation of YouCompleteMe, go to the YCM directory in the .vim folder, and then run the install.py function i.e.
-
-```
-cd ~/.vim/bundle/YouCompleteMe/
-python install.py
+``` 
+chmod u+x install-bash-functions.sh
+./install-bash-functions.sh
 ```
 
-YouCompleteMe is finicky and would not work if the python install.py was run as a script, ie running ./install.py  Either install anaconda and then run python install.py (easiest), or run the shell script in an anaconda virtual environment.   The script install.sh has a limited success rate, however the command ```python install.py``` tends to work well.   
-
-The bashrc includes functions such as up, which allows you to move up either a certain number of directories, or alternatively if a name is provided, allows you to move up to the name of the directory above the current directory.   ex
-```
-michael:~/Documents/galvanize/Kaggle/Cancer_Project/src$ up Documents
-michael:~/Documents$
-```
-
-or 
+To install vim with YouCompleteme, a syntax checker, and several other nice features, run
 
 ```
-michael:~/Documents/galvanize/Kaggle/Cancer_Project/src$ up 3
-michael:~/Documents/galvanize$
+chmod u_x install-vim.sh
+./install-vim.sh
+```
+The bash function install will work on both mac and unix, however, the vim install currently only works on linux. 
+
+## New useful commands
+
+### up
+
+Instead of writing `cd ../../../../..` You can now write up 5, and you will navigate to a directory 5 higher.  You can also navigate up to a specific derecotry by typing in all or just the first part of the name for example
 ```
 
-or
+user:Documents/respositories/resume-data/src/java/com/indeed/resume/quality/tools$ up 3
+user:Documents/respositories/resume-data/src/java/com/indeed$ 
+user:Documents/respositories/resume-data/src/java/com/indeed$ up src
+user:Documents/repositories/resume-data/src$ 
+user:Documents/repositories/resume-data/src$ up repo
+user:Documents/repositories$:
+```
+
+
+### goto
+
+Do you ever hate finding where you actually installed a git repository.  Now you can just type in `goto <repository name> ` and you will navigate to the repository.  If you have accidently cloned the repo to two different locations, it will ask you which one you want to go to.  And it also supports tab completion.   
 
 ```
-michael:~/Documents/galvanize/Kaggle/Cancer_Project/src$ up galvanize/dsi-lectures/linear_regression
-michael:~/Documents/galvanize/dsi-lectures/linear_regression$
+username:Documents/resume-quality$ goto resume-data-pipeline
+/user/username/repositories/resume-data-pipeline
+username:repositories/resume-data-pipeline$
 ```
-
-Th bashrc also contains an extract function that will call the correct software to extract files of type:
- - .zip 
- - .rar 
- - .tar
- - .bz
- - .bz2
- - .gz
- - .tbz2
- - .tgz
- - .Z 
