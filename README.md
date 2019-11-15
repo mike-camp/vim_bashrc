@@ -35,7 +35,7 @@ user:Documents/repositories$:
 Do you ever hate finding where you actually installed a git repository.  Now you can just type in `goto <repository name> ` and you will navigate to the repository.  If you have accidently cloned the repo to two different locations, it will ask you which one you want to go to.  And it also supports tab completion.   
 
 ```
-username:Documents/resume-quality$ goto myproject
+username:Documents/vim_bashrc$ goto myproject
 /user/username/repositories/myproject
 username:repositories/myproject$
 ```
